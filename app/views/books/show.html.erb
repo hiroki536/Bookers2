@@ -1,0 +1,57 @@
+
+
+<div class="container px-5 px-sm-0">
+ <div class="row">
+
+  <%= render 'index', book: @books, user: @user %>
+
+<div class="col-md-8 offset-md-1">
+
+
+  <h1>Book detail</h1>
+<table class="table table-hover table-inverse">
+  <thead>
+  </thead>
+  <tbody>
+
+		<tr>
+		  <td> <%=link_to user_path(@book.user) do%>
+		  <%= image_tag @user.get_profile_image(100,100) , size: "100x100"%><br>
+		  <%= @book.user.name %>
+		  <%end%>
+		  </td>
+		  <td><%= link_to book_path(@book) do%><%= @book.title %>
+		  <%end%></td>
+			<td><%= @book.body %></td>
+
+
+
+
+
+   <td>
+  <% if @book.user == current_user %>
+    <%= link_to edit_book_path(@book.id) do%>
+    <div class="btn btn-sm btn-success">Edit</div>
+    <%end%>
+  <% end %>
+  </td>
+
+
+
+   <td>
+  <% if @book.user == current_user %>
+    <%= link_to book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" do%>
+    <div class="btn btn-sm btn-danger">Destroy</div>
+    <%end%>
+  <% end %>
+  </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+
